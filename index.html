@@ -209,7 +209,8 @@
       <div class="produto-content">
         <h2>CANAIS LIBERADO R$ 15,00</h2>
         <p>🔹 BÁSICO – 1 Conexão<br>Qualidade HD/SD</p>
-        <a href="https://pay.cakto.com.br/wd4xgkn_541680" target="_blank">Comprar</a>
+<a href="#" class="botao-compra" data-link="https://pay.cakto.com.br/wd4xgkn_541680">Comprar</a>
+
       </div>
     </div>
     <div class="produto">
@@ -217,7 +218,7 @@
       <div class="produto-content">
         <h2>CANAIS LIBERADO R$ 25,00</h2>
         <p>🔹 INTERMEDIÁRIO – 2 Conexões<br>Qualidade FHD/HD/SD</p>
-        <a href="https://wa.me/5551980323797?text=COMPREI%0A%0AINTERMEDIÁRIO%20R$25" target="_blank">Comprar</a>
+        <a href="https://pay.cakto.com.br/wd4xgkn_541680" target="_blank">Comprar</a>
       </div>
     </div>
     <div class="produto">
@@ -229,6 +230,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- Renovação -->
   <div class="renovacao-container" id="renovacao">
@@ -261,6 +263,16 @@
   </div>
 
   <script>
+document.querySelectorAll('.botao-compra').forEach(botao => {
+  botao.addEventListener('click', e => {
+    e.preventDefault();
+    const url = botao.getAttribute('data-link');
+    window.open(url, "_blank");
+  });
+});
+
+
+
     // Animação produtos
     const produtos = document.querySelectorAll('.produto');
     const observer = new IntersectionObserver(entries => {
@@ -330,7 +342,7 @@
       window.open(url,"_blank");
     }
   </script>
+  
 </body>
 </html>
-
 
