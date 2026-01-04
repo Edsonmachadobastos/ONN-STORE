@@ -1,344 +1,617 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ONN STORE</title>
-  <style>
-    * { box-sizing: border-box; font-family: 'Montserrat', sans-serif; margin:0; padding:0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONN STORE | Premium IPTV</title>
+    
+    <!-- Fontes Modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+     <link rel="icon" href="https://i.postimg.cc/LscvdyVV/Chat-GPT-Image-4-de-jan-de-2026-19-50-22.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animações -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    body {
-      background: linear-gradient(to bottom, #000000, #1a1a1a);
-      color: #fff;
-      padding-bottom: 6rem;
-    }
+    <style>
+        :root {
+            /* Paleta de Cores da ONN STORE */
+            --primary: #bc13fe;      /* Roxo Neon Principal */
+            --primary-dark: #7a0afe; /* Roxo Escuro */
+            --accent: #00ffcc;       /* Verde Água para Detalhes */
+            --bg-dark: #08080c;      /* Fundo Quase Preto */
+            --bg-card: #121218;      /* Fundo dos Cards */
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --success: #00ff88;
+        }
 
-    header {
-      padding: 2rem 1rem 1rem;
-      text-align: center;
-      background: #000;
-      position: relative;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-    header img {
-      height: 80px;
-      margin-bottom: 0.5rem;
-      animation: flutuar 3s ease-in-out infinite;
-    }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
 
-    header h1 { color: #ff8000; font-size: 2rem; letter-spacing: 1px; }
+        /* --- Utilitários --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    header a.renovar-link {
-      color: #00e5ff;
-      text-decoration: none;
-      font-weight: bold;
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: color 0.3s;
-    }
-    header a.renovar-link:hover { color: #ff8000; }
+        .text-gradient {
+            background: linear-gradient(90deg, #fff, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* Produtos */
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 35px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+        }
 
-    .produto {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, opacity 1s ease;
-      box-shadow: 0 0 10px #ff800040;
-      opacity: 0;
-      transform: translateY(30px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(188, 19, 254, 0.4);
+        }
 
-    .produto.visible { opacity: 1; transform: translateY(0); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(188, 19, 254, 0.6);
+        }
 
-    .produto:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #ff8000aa, 0 0 40px #ff800040 inset;
-    }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+        }
 
-    .produto img { width: 100%; height: 200px; object-fit: cover; }
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
 
-    .produto-content { padding: 1rem; width: 100%; }
+        /* --- Navbar Organizada --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8, 8, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+        }
 
-    .produto h2 { font-size: 1.2rem; color: #ff9933; margin-bottom: 0.5rem; }
-    .produto p { font-size: 0.9rem; color: #ccc; line-height: 1.3; }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .produto a {
-      display: block;
-      background: #ff8000;
-      color: #000;
-      padding: 0.6rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-      width: fit-content;
-      margin: 1rem auto 0;
-    }
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -1px;
+        }
+        
+        .logo span { color: var(--primary); }
 
-    .produto a:hover { background: #cc6600; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: white; }
 
-    /* Separador */
-    .separador-seg {
-      grid-column: 1 / -1;
-      text-align: center;
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #ff8000;
-      padding: 0.8rem 0;
-      border-top: 2px solid #ff8000;
-      border-bottom: 2px solid #ff8000;
-      margin: 2rem 0 1rem;
-    }
+        /* --- Hero Section --- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 0%, rgba(122, 10, 254, 0.15) 0%, transparent 70%);
+        }
 
-    /* Botão topo */
-    #topoBtn {
-      position: fixed; bottom: 90px; right: 20px;
-      background-color: #ff8000; color: #000;
-      border: none; padding: 12px 16px;
-      border-radius: 50%; font-size: 18px;
-      cursor: pointer; box-shadow: 0 0 10px #ff800080;
-      display: none; z-index: 999;
-      transition: background-color 0.3s, transform 0.3s;
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
 
-    #topoBtn:hover { background-color: #cc6600; transform: scale(1.1); }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
 
-    /* WhatsApp */
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
-    .whatsapp-float a {
-      background-color: #25d366; color: white; border-radius: 50%;
-      padding: 16px; font-size: 24px;
-      text-decoration: none; display: flex;
-      align-items: center; justify-content: center;
-      box-shadow: 0 0 10px #25d366;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-    .whatsapp-float a:hover { background-color: #1ebd59; transform: scale(1.1); }
+        /* --- ESTILOS DO MARQUEE (CARROSSEL) --- */
+        .logo-marquee {
+            background: #0b0b0e;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 30px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            margin-bottom: 50px; /* Espaço antes dos planos */
+        }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .produtos { grid-template-columns: 1fr; }
-      .produto img { height: 180px; }
-      header h1 { font-size: 1.6rem; }
-      header a.renovar-link { position: static; transform: none; margin-top: 1rem; display: inline-block; }
-    }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+        }
 
-    @keyframes flutuar { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
+        .channel-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.2); /* Cor apagada */
+            margin: 0 40px;
+            display: inline-block;
+            transition: 0.3s;
+            cursor: default;
+            vertical-align: middle;
+        }
 
-    /* Carrossel */
-    .header-text { text-align: center; padding: 25px 15px 10px; font-size: 2.5rem; font-weight: bold; letter-spacing: 2px; color: #00e5ff; text-shadow: 0 0 10px #00e5ffaa; }
-    .carousel-container { position: relative; overflow: hidden; width: 100%; padding: 20px 0 40px; background: #1c1c1c; }
-    .carousel-track { display: flex; gap: 20px; transition: transform 0.7s ease-in-out; }
-    .carousel-slide { min-width: 100%; flex-shrink: 0; border-radius: 12px; overflow: hidden; height: 500px; }
-    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-    .carousel-button {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background-color: rgba(255,255,255,0.2); border: none; color: #fff;
-      font-size: 2.5rem; padding: 12px 18px; cursor: pointer; z-index:1; border-radius:6px;
-    }
-    .carousel-button:hover { background-color: rgba(255,255,255,0.5); color:#000; }
-    .carousel-button.prev { left: 15px; }
-    .carousel-button.next { right: 15px; }
-    @media(min-width:600px){.carousel-slide{min-width:48%;height:500px;}}
-    @media(min-width:1000px){.carousel-slide{min-width:32%;height:550px;}}
+        .channel-logo:hover {
+            color: var(--primary); /* Cor acesa ao passar mouse */
+            text-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+            transform: scale(1.1);
+        }
 
-    /* Renovação */
-    .renovacao-container {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #ff800060;
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-      margin: 3rem auto;
-    }
-    .renovacao-container h2 { color: #ff8000; margin-bottom: 1rem; }
-    .renovacao-container input {
-      width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom:1rem;
-      font-size:1rem; text-align:center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .renovacao-container input:focus { outline:none; box-shadow: 0 0 10px #ff8000; transform: scale(1.02); }
-    .renovacao-container button {
-      background: #ff8000; color: #000; font-weight:bold;
-      border:none; border-radius:8px; padding:12px 20px; cursor:pointer; transition:0.3s; font-size:1rem; width:100%;
-    }
-    .renovacao-container button:hover { background:#cc6600; transform: scale(1.02); }
-  </style>
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Tabela de Preços (Foco na Organização) --- */
+        .pricing-section {
+            padding: 40px 0 80px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; font-family: 'Outfit', sans-serif; }
+        
+        /* Toggle Switch (Chavinha) */
+        .toggle-container {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 20px;
+            border-radius: 50px;
+            gap: 15px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(24px); }
+
+        .discount-badge {
+            background: var(--success);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+
+        /* Cards Organizados */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center; /* Centraliza verticalmente */
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: left; /* Conteúdo alinhado à esquerda fica mais organizado */
+            transition: 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(188, 19, 254, 0.3);
+        }
+
+        /* Card Destaque (Intermediário) */
+        .price-card.featured {
+            background: linear-gradient(180deg, rgba(122, 10, 254, 0.1), var(--bg-card));
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .price-card.featured:hover { transform: scale(1.07); }
+
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .plan-name { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }
+        
+        .price-display { margin: 20px 0; }
+        .currency { font-size: 1.2rem; vertical-align: top; color: var(--text-gray); }
+        .amount { font-size: 3rem; font-weight: 800; color: white; font-family: 'Outfit', sans-serif; }
+        .period { font-size: 1rem; color: var(--text-gray); }
+
+        .features { list-style: none; margin-bottom: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; flex-grow: 1; }
+        .features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #ddd; font-size: 0.95rem; }
+        .features li i { color: var(--primary); }
+        .features li.disabled { color: #555; text-decoration: line-through; opacity: 0.6; }
+
+        .card-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: auto; /* Empurra o botão para baixo */
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #050505;
+            padding: 50px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .price-card.featured { transform: scale(1); }
+            .pricing-grid { padding: 0 10px; }
+            .channel-logo { margin: 0 20px; font-size: 1.5rem; }
+        }
+
+        /* Elementos JS */
+        .show-annual .monthly-price { display: none; }
+        .show-annual .annual-price { display: block; }
+        .annual-price { display: none; } /* Padrão escondido */
+    </style>
 </head>
 <body>
 
-  <header>
-    <img src="https://i.postimg.cc/q7t5zKdG/logo2222.png" alt="Logo ONN STORE">
-    <h1>Seus Produtos Digitais</h1>
-    <a href="#renovacao" class="renovar-link">Renovar Usuário</a>
-  </header>
+    <!-- Navegação -->
+    <header>
+        <div class="container nav-inner">
+            <div class="logo">ONN <span>STORE</span></div>
+            <div class="nav-links">
+                <a href="#inicio">Início</a>
+                <a href="#planos">Planos</a>
+                <a href="#teste">Teste Grátis</a>
+            </div>
+            <a href="https://wa.me/5551980323797?text=Ola%20ONN%20STORE,%20quero%20um%20teste" class="btn btn-secondary" style="padding: 8px 20px; font-size:0.8rem;">
+                <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Teste Rápido
+            </a>
+        </div>
+    </header>
 
-  <div class="separador-seg">TODOS OS CANAIS LIBERADOS 📺</div>
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h1>Entretenimento Sem Limites <br> <span class="text-gradient">Qualidade 4K</span></h1>
+                <p>Assista seus canais favoritos, filmes e séries sem travamentos. A melhor lista IPTV do mercado com suporte dedicado.</p>
+                <div style="display:flex; justify-content:center; gap:15px;">
+                    <a href="#planos" class="btn btn-primary">Ver Preços</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Produtos -->
-  <div class="produtos">
-    <div class="produto">
-      <img src="https://i.postimg.cc/Fz030cp8/Chat-GPT-Image-17-04-2025-15-24.png" alt="Plano Básico">
-      <div class="produto-content">
-        <h2>TESTE GRATIS</h2>
-        <p>TODOS OS CANAIS LIBERADO</p>
-        <a href="#" class="botao-compra" data-link="https://SEU-LINK-AQUI.com/teste">Comprar</a>
-      </div>
+    <!-- !!! AQUI ESTÁ O CARROSSEL (MARQUEE) ADICIONADO !!! -->
+    <div class="logo-marquee">
+        <div class="marquee-content">
+            <!-- Conteúdo repetido para criar o loop infinito -->
+            <span class="channel-logo">NETFLIX</span>
+            <span class="channel-logo">PRIME VIDEO</span>
+            <span class="channel-logo">HBO MAX</span>
+            <span class="channel-logo">DISNEY+</span>
+            <span class="channel-logo">GLOBOPLAY</span>
+            <span class="channel-logo">PREMIERE</span>
+            <span class="channel-logo">ESPN</span>
+            <span class="channel-logo">TELECINE</span>
+            <span class="channel-logo">UFC</span>
+            <!-- REPETIÇÃO -->
+            <span class="channel-logo">NETFLIX</span>
+            <span class="channel-logo">PRIME VIDEO</span>
+            <span class="channel-logo">HBO MAX</span>
+            <span class="channel-logo">DISNEY+</span>
+            <span class="channel-logo">GLOBOPLAY</span>
+            <span class="channel-logo">PREMIERE</span>
+            <span class="channel-logo">ESPN</span>
+            <span class="channel-logo">TELECINE</span>
+            <span class="channel-logo">UFC</span>
+        </div>
     </div>
-    <div class="produto">
-      <img src="https://i.postimg.cc/VkS5fXRR/Chat-GPT-Image-30-04-2025-11-19-35.png" alt="Plano Básico">
-      <div class="produto-content">
-        <h2>CANAIS LIBERADO R$ 15,00</h2>
-        <p>🔹 BÁSICO – 1 Conexão<br>Qualidade HD/SD</p>
-        <a href="#" class="botao-compra" data-link="https://pay.cakto.com.br/wd4xgkn_541680">Comprar</a>
-      </div>
-    </div>
-    <div class="produto">
-      <img src="https://i.postimg.cc/jj9g5M5Z/Chat-GPT-Image-30-04-2025-11-15-24.png" alt="Plano Intermediário">
-      <div class="produto-content">
-        <h2>CANAIS LIBERADO R$ 25,00</h2>
-        <p>🔹 INTERMEDIÁRIO – 2 Conexões<br>Qualidade FHD/HD/SD</p>
-        <a href="#" class="botao-compra" data-link="https://SEU-LINK-AQUI.com/plano25">Comprar</a>
-      </div>
-    </div>
-    <div class="produto">
-      <img src="https://i.postimg.cc/L6snXBbZ/Chat-GPT-Image-30-04-2025-11-23-46.png" alt="Plano Avançado">
-      <div class="produto-content">
-        <h2>CANAIS LIBERADO R$ 30,00</h2>
-        <p>🔹 AVANÇADO – 2 Conexões<br>FHD/HD/SD/4K + Conteúdo adulto</p>
-        <a href="#" class="botao-compra" data-link="https://SEU-LINK-AQUI.com/plano30">Comprar</a>
-      </div>
-    </div>
-  </div>
-  
 
-  <!-- Renovação -->
-  <div class="renovacao-container" id="renovacao">
-    <h2>Renovação de Usuário</h2>
-    <p>Digite seu usuário para solicitar renovação:</p>
-    <input type="text" id="usuario" placeholder="Seu usuário" required>
-    <button onclick="enviarWhatsApp()">Renovar Agora</button>
-  </div>
+    <!-- Preços (Inteligente) -->
+    <section class="pricing-section" id="planos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span class="text-gradient">Planos</span></h2>
+                <p style="color:var(--text-gray);">Escolha a modalidade que melhor te atende.</p>
+                
+                <!-- Botão de Troca (Toggle) -->
+                <div class="toggle-container">
+                    <span id="txt-monthly" style="color:white; font-weight:700;">Mensal</span>
+                    <label class="switch">
+                        <input type="checkbox" id="plan-toggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="txt-annual" style="color:var(--text-gray);">Anual <span class="discount-badge">-15% OFF</span></span>
+                </div>
+            </div>
 
-  <!-- Carrossel -->
-  <div class="header-text">Lançamentos Imperdíveis de Filmes e Séries</div>
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <div class="carousel-slide"><img src="https://i.postimg.cc/KcqQBv84/photo-2025-08-25-20-37-35.jpg" /></div>
-      <div class="carousel-slide"><img src="https://i.postimg.cc/7Z7NF3MT/photo-2025-08-25-20-37-29.jpg" /></div>
-      <div class="carousel-slide"><img src="https://i.postimg.cc/mrsSBP8p/photo-2025-08-25-20-37-26.jpg" /></div>
-      <div class="carousel-slide"><img src="https://i.postimg.cc/wxGc3fwm/photo-2025-08-25-20-37-22.jpg" alt="Filme 4" /></div>
-      <div class="carousel-slide"><img src="https://i.postimg.cc/gkLyhV7B/photo-2025-08-25-20-37-16.jpg" /></div>
-        <div class="carousel-slide"><img src="https://i.postimg.cc/tgpF8L4L/photo-2025-08-25-20-37-08.jpg" /></div>
-        <div class="carousel-slide"><img src="https://i.postimg.cc/vTgnWy06/photo-2025-08-25-20-36-55.jpg" /></div>
-    </div>
-    <button class="carousel-button prev">&#10094;</button>
-    <button class="carousel-button next">&#10095;</button>
-  </div>
+            <div class="pricing-grid" id="pricing-wrapper">
+                
+                <!-- Plano Básico -->
+                <div class="price-card">
+                    <h3 class="plan-name">Básico</h3>
+                    
+                    <!-- Preço muda via CSS/JS -->
+                    <div class="price-display">
+                        <div class="monthly-price">
+                            <span class="currency">R$</span><span class="amount">15</span><span class="period">/mês</span>
+                        </div>
+                        <div class="annual-price">
+                            <span class="currency">R$</span><span class="amount">132</span><span class="period">/ano</span>
+                            <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
+                        </div>
+                    </div>
 
-  <!-- Botões fixos -->
-  <button id="topoBtn">↑</button>
-  <div class="whatsapp-float">
-    <a href="https://wa.me/5551980323797?text=oi%20quero%20tirar%20minha%20d%C3%BAvida%3F" target="_blank">💬</a>
-  </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 1 Conexão Simultânea</li>
+                        <li><i class="fas fa-check"></i> Qualidade HD/SD</li>
+                        <li><i class="fas fa-check"></i> Filmes e Séries</li>
+                        <li><i class="fas fa-check"></i> Canais Ao Vivo</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Canais Adultos</li>
+                    </ul>
+                    
+                    <!-- Botão com ID para o JS manipular -->
+                    <a href="#" id="btn-basico" class="btn btn-secondary card-btn" target="_blank">
+                        Assinar Básico
+                    </a>
+                </div>
 
-  <script>
-document.querySelectorAll('.botao-compra').forEach(botao => {
-  botao.addEventListener('click', e => {
-    e.preventDefault();
-    const url = botao.getAttribute('data-link');
-    window.open(url, "_blank");
-  });
-});
+                <!-- Plano Intermediário (Destaque) -->
+                <div class="price-card featured">
+                    <div class="popular-tag">Mais Vendido</div>
+                    <h3 class="plan-name" style="color:var(--primary);">Intermediário</h3>
+                    
+                    <div class="price-display">
+                        <div class="monthly-price">
+                            <span class="currency">R$</span><span class="amount">25</span><span class="period">/mês</span>
+                        </div>
+                        <div class="annual-price">
+                            <span class="currency">R$</span><span class="amount">252</span><span class="period">/ano</span>
+                            <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
+                        </div>
+                    </div>
 
-    // Animação produtos
-    const produtos = document.querySelectorAll('.produto');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          entry.target.style.transitionDelay = `${i*0.1}s`;
-          observer.unobserve(entry.target);
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> <strong>2 Conexões Simultâneas</strong></li>
+                        <li><i class="fas fa-check"></i> Qualidade <strong>FHD</strong>/HD</li>
+                        <li><i class="fas fa-check"></i> Filmes e Séries</li>
+                        <li><i class="fas fa-check"></i> Canais Ao Vivo</li>
+                        <li><i class="fas fa-check"></i> Servidor Premium</li>
+                    </ul>
+
+                    <a href="#" id="btn-inter" class="btn btn-primary card-btn" target="_blank">
+                        Assinar Intermediário
+                    </a>
+                </div>
+
+                <!-- Plano Avançado -->
+                <div class="price-card">
+                    <h3 class="plan-name">Avançado</h3>
+                    
+                    <div class="price-display">
+                        <div class="monthly-price">
+                            <span class="currency">R$</span><span class="amount">30</span><span class="period">/mês</span>
+                        </div>
+                        <div class="annual-price">
+                            <span class="currency">R$</span><span class="amount">312</span><span class="period">/ano</span>
+                            <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
+                        </div>
+                    </div>
+
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> <strong>2 Conexões Simultâneas</strong></li>
+                        <li><i class="fas fa-check"></i> Qualidade <strong>4K Ultra</strong></li>
+                        <li><i class="fas fa-check"></i> Filmes e Séries (Lançamentos)</li>
+                        <li><i class="fas fa-lock"></i> <strong>Canais Adultos (+18)</strong></li>
+                        <li><i class="fas fa-star"></i> Prioridade no Suporte</li>
+                    </ul>
+
+                    <a href="#" id="btn-avancado" class="btn btn-secondary card-btn" target="_blank">
+                        Assinar Avançado
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Teste Grátis -->
+    <section id="teste" style="background: var(--bg-card); padding: 60px 0; margin-top:40px;">
+        <div class="container" style="text-align: center;">
+            <h2 style="margin-bottom: 20px;">Não tem certeza?</h2>
+            <p style="margin-bottom: 30px; color:var(--text-gray);">Teste nosso serviço gratuitamente antes de contratar.</p>
+            <a href="https://wa.me/5551980323797?text=Ola,%20gostaria%20de%20solicitar%20meu%20TESTE%20GRATIS" class="btn btn-primary" style="background: #25D366; color:white;">
+                <i class="fab fa-whatsapp" style="margin-right:10px;"></i> Solicitar Teste Grátis
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="logo" style="font-size:1.5rem; margin-bottom:15px;">ONN <span>STORE</span></p>
+            <p>Mais informações: (51) 98032-3797</p>
+            <p style="font-size:0.8rem; margin-top:20px;">&copy; 2024 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante -->
+    <a href="https://wa.me/5551980323797?text=Preciso%20de%20ajuda" 
+       style="position:fixed; bottom:30px; right:30px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; color:white; box-shadow:0 5px 15px rgba(0,0,0,0.3); z-index:999; text-decoration:none;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    
+    <!-- Scripts de Funcionalidade -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // ELEMENTOS DO DOM
+        const toggleSwitch = document.getElementById('plan-toggle');
+        const pricingWrapper = document.getElementById('pricing-wrapper');
+        const txtMonthly = document.getElementById('txt-monthly');
+        const txtAnnual = document.getElementById('txt-annual');
+
+        // BOTÕES
+        const btnBasico = document.getElementById('btn-basico');
+        const btnInter = document.getElementById('btn-inter');
+        const btnAvancado = document.getElementById('btn-avancado');
+
+        // NÚMERO DO WHATSAPP (Apenas números)
+        const phone = "5551980323797";
+
+        // FUNÇÃO PARA ATUALIZAR OS LINKS DOS BOTÕES
+        function updateLinks(isAnnual) {
+            
+            // Textos para Básico
+            const msgBasico = isAnnual 
+                ? "Olá! Gostaria de assinar o plano *BÁSICO ANUAL* por R$ 132,00."
+                : "Olá! Gostaria de assinar o plano *BÁSICO MENSAL* por R$ 15,00.";
+            
+            // Textos para Intermediário
+            const msgInter = isAnnual 
+                ? "Olá! Gostaria de assinar o plano *INTERMEDIÁRIO ANUAL* por R$ 252,00 (O mais vendido!)."
+                : "Olá! Gostaria de assinar o plano *INTERMEDIÁRIO MENSAL* por R$ 25,00.";
+
+            // Textos para Avançado
+            const msgAvancado = isAnnual 
+                ? "Olá! Gostaria de assinar o plano *AVANÇADO ANUAL* por R$ 312,00 (Completo com Adultos)."
+                : "Olá! Gostaria de assinar o plano *AVANÇADO MENSAL* por R$ 30,00 (Completo com Adultos).";
+
+            // Atualiza os Hrefs
+            btnBasico.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgBasico)}`;
+            btnInter.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgInter)}`;
+            btnAvancado.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgAvancado)}`;
         }
-      });
-    }, { threshold: 0.1 });
-    produtos.forEach(produto => observer.observe(produto));
 
-    // Botão topo
-    const topoBtn = document.getElementById("topoBtn");
-    window.onscroll = () => { topoBtn.style.display = window.scrollY > 200 ? "block" : "none"; };
-    topoBtn.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+        // EVENT LISTENER DA TROCA DE PREÇO
+        toggleSwitch.addEventListener('change', () => {
+            if(toggleSwitch.checked) {
+                // Modo Anual Ativado
+                pricingWrapper.classList.add('show-annual');
+                txtAnnual.style.color = "white";
+                txtMonthly.style.color = "#b0b0b0";
+                txtAnnual.style.fontWeight = "700";
+                txtMonthly.style.fontWeight = "400";
+                updateLinks(true); // Atualiza botões para Anual
+            } else {
+                // Modo Mensal Ativado
+                pricingWrapper.classList.remove('show-annual');
+                txtMonthly.style.color = "white";
+                txtAnnual.style.color = "#b0b0b0";
+                txtMonthly.style.fontWeight = "700";
+                txtAnnual.style.fontWeight = "400";
+                updateLinks(false); // Atualiza botões para Mensal
+            }
+        });
 
-    // Carrossel
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prev = document.querySelector('.carousel-button.prev');
-    const next = document.querySelector('.carousel-button.next');
-    let index = 0;
+        // INICIALIZAÇÃO (Garante que comece no mensal correto)
+        updateLinks(false);
 
-    function slidesPerView() {
-      if(window.innerWidth >= 1000) return 3;
-      if(window.innerWidth >= 600) return 2;
-      return 1;
-    }
-
-    function moveToSlide(idx) {
-      const slideWidth = slides[0].getBoundingClientRect().width + 20;
-      track.style.transform = `translateX(-${idx*slideWidth}px)`;
-    }
-
-    function nextSlide() {
-      const spv = slidesPerView();
-      index = (index + 1) % slides.length;
-      if(index > slides.length - spv) index = 0;
-      moveToSlide(index);
-    }
-
-    function prevSlide() {
-      const spv = slidesPerView();
-      index = (index - 1 + slides.length) % slides.length;
-      moveToSlide(index);
-    }
-
-    next.addEventListener('click', () => { nextSlide(); resetAuto(); });
-    prev.addEventListener('click', () => { prevSlide(); resetAuto(); });
-
-    window.addEventListener('resize', () => moveToSlide(index));
-
-    let auto = setInterval(nextSlide, 4000);
-    function resetAuto() { clearInterval(auto); auto = setInterval(nextSlide,4000); }
-
-    moveToSlide(index);
-
-    // Renovação via WhatsApp
-    function enviarWhatsApp() {
-      const usuario = document.getElementById("usuario").value.trim();
-      if(usuario===""){ alert("Por favor, digite seu usuário."); return; }
-      const numero = "5551980323797";
-      const mensagem = `Olá! Quero renovar meu usuário: ${usuario}`;
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url,"_blank");
-    }
-  </script>
-  
+    </script>
 </body>
 </html>
