@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONN STORE | Premium IPTV</title>
+    <title>NEXUS | Premium IPTV</title>
     
     <!-- Fontes Modernas -->
+        <link rel="icon" href="https://i.postimg.cc/KjscFHfG/FRTYFRTYFRTF.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Ícones -->
-     <link rel="icon" href="https://i.postimg.cc/LscvdyVV/Chat-GPT-Image-4-de-jan-de-2026-19-50-22.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Animações -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            /* Paleta de Cores da ONN STORE */
-            --primary: #bc13fe;      /* Roxo Neon Principal */
-            --primary-dark: #7a0afe; /* Roxo Escuro */
-            --accent: #00ffcc;       /* Verde Água para Detalhes */
-            --bg-dark: #08080c;      /* Fundo Quase Preto */
-            --bg-card: #121218;      /* Fundo dos Cards */
+            /* NOVA Paleta de Cores NEXUS */
+            --primary: #ff0022;      /* Vermelho Vivo Nexus */
+            --primary-dark: #b30018; /* Vermelho Escuro (Sangue) */
+            --accent: #ffffff;       /* Branco para contraste máximo */
+            --bg-dark: #050505;      /* Preto Quase Absoluto */
+            --bg-card: #0f0f0f;      /* Cinza Chumbo Escuro */
             --text-white: #ffffff;
-            --text-gray: #b0b0b0;
+            --text-gray: #a0a0a0;
             --success: #00ff88;
         }
 
@@ -50,7 +50,7 @@
         }
 
         .text-gradient {
-            background: linear-gradient(90deg, #fff, var(--primary), var(--accent));
+            background: linear-gradient(90deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -60,10 +60,10 @@
             align-items: center;
             justify-content: center;
             padding: 14px 35px;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 4px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -74,12 +74,12 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
-            box-shadow: 0 4px 15px rgba(188, 19, 254, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 0, 34, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(188, 19, 254, 0.6);
+            box-shadow: 0 8px 30px rgba(255, 0, 34, 0.7);
         }
 
         .btn-secondary {
@@ -91,16 +91,17 @@
         .btn-secondary:hover {
             border-color: var(--primary);
             color: var(--primary);
+            background: rgba(255, 0, 34, 0.05);
         }
 
-        /* --- Navbar Organizada --- */
+        /* --- Navbar Responsiva --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(8, 8, 12, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             padding: 15px 0;
         }
@@ -109,42 +110,62 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: white;
-            letter-spacing: -1px;
+            color: var(--primary);
+            letter-spacing: -1.5px;
+            text-transform: lowercase;
+            z-index: 1002; /* Fica acima do menu mobile */
         }
-        
-        .logo span { color: var(--primary); }
 
-        .nav-links { display: flex; gap: 30px; }
+        /* Container dos links */
+        .nav-links { 
+            display: flex; 
+            gap: 30px; 
+            align-items: center;
+        }
+
         .nav-links a {
             color: var(--text-gray);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .nav-links a:hover { color: white; }
+        
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Ícone Hamburger (Invisível no Desktop) */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            z-index: 1002;
+        }
 
         /* --- Hero Section --- */
         .hero {
-            padding-top: 140px;
-            padding-bottom: 60px;
+            padding-top: 160px;
+            padding-bottom: 80px;
             text-align: center;
-            background: radial-gradient(circle at 50% 0%, rgba(122, 10, 254, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(200, 0, 30, 0.2) 0%, transparent 60%);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 20px;
             font-family: 'Outfit', sans-serif;
+            letter-spacing: -1px;
         }
 
         .hero p {
@@ -154,16 +175,16 @@
             margin: 0 auto 40px;
         }
 
-        /* --- ESTILOS DO MARQUEE (CARROSSEL) --- */
+        /* --- Marquee --- */
         .logo-marquee {
-            background: #0b0b0e;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: #000;
+            border-top: 1px solid rgba(255, 0, 34, 0.1);
+            border-bottom: 1px solid rgba(255, 0, 34, 0.1);
             padding: 30px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
-            margin-bottom: 50px; /* Espaço antes dos planos */
+            margin-bottom: 50px;
         }
 
         .marquee-content {
@@ -175,7 +196,7 @@
             font-family: 'Outfit', sans-serif;
             font-weight: 900;
             font-size: 1.8rem;
-            color: rgba(255,255,255,0.2); /* Cor apagada */
+            color: rgba(255,255,255,0.15);
             margin: 0 40px;
             display: inline-block;
             transition: 0.3s;
@@ -184,8 +205,8 @@
         }
 
         .channel-logo:hover {
-            color: var(--primary); /* Cor acesa ao passar mouse */
-            text-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255, 0, 34, 0.8);
             transform: scale(1.1);
         }
 
@@ -194,24 +215,15 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- Tabela de Preços (Foco na Organização) --- */
-        .pricing-section {
-            padding: 40px 0 80px;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; font-family: 'Outfit', sans-serif; }
+        /* --- Tabela de Preços --- */
+        .pricing-section { padding: 40px 0 80px; position: relative; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; font-family: 'Outfit', sans-serif; text-transform: uppercase; }
         
-        /* Toggle Switch (Chavinha) */
         .toggle-container {
             display: inline-flex;
             align-items: center;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             padding: 8px 20px;
             border-radius: 50px;
             gap: 15px;
@@ -219,140 +231,104 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 52px;
-            height: 28px;
-        }
-
+        .switch { position: relative; display: inline-block; width: 52px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-
         .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #333;
-            transition: .4s;
-            border-radius: 34px;
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333; transition: .4s; border-radius: 34px;
         }
-
         .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+            position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px;
+            background-color: white; transition: .4s; border-radius: 50%;
         }
-
         input:checked + .slider { background-color: var(--primary); }
         input:checked + .slider:before { transform: translateX(24px); }
+        
+        .discount-badge { background: var(--primary); color: white; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin-left: 5px; }
 
-        .discount-badge {
-            background: var(--success);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 5px;
-        }
-
-        /* Cards Organizados */
         .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            align-items: center; /* Centraliza verticalmente */
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center;
         }
 
         .price-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: left; /* Conteúdo alinhado à esquerda fica mais organizado */
-            transition: 0.3s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;
+            padding: 40px 30px; text-align: left; transition: 0.3s; position: relative;
+            display: flex; flex-direction: column; height: 100%;
         }
-
-        .price-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(188, 19, 254, 0.3);
-        }
-
-        /* Card Destaque (Intermediário) */
+        .price-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        
         .price-card.featured {
-            background: linear-gradient(180deg, rgba(122, 10, 254, 0.1), var(--bg-card));
-            border: 2px solid var(--primary);
-            transform: scale(1.05);
-            z-index: 2;
+            background: linear-gradient(180deg, rgba(255, 0, 34, 0.08), var(--bg-card));
+            border: 1px solid var(--primary); transform: scale(1.05); z-index: 2; box-shadow: 0 0 30px rgba(255, 0, 34, 0.1);
         }
-
         .price-card.featured:hover { transform: scale(1.07); }
 
         .popular-tag {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            font-weight: 700;
-            font-size: 0.8rem;
-            padding: 5px 15px;
-            border-radius: 20px;
-            text-transform: uppercase;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: white; font-weight: 700; font-size: 0.8rem;
+            padding: 5px 15px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .plan-name { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }
-        
+        .plan-name { font-size: 1.6rem; font-weight: 800; color: white; margin-bottom: 10px; font-family: 'Outfit', sans-serif; text-transform: uppercase; }
         .price-display { margin: 20px 0; }
         .currency { font-size: 1.2rem; vertical-align: top; color: var(--text-gray); }
-        .amount { font-size: 3rem; font-weight: 800; color: white; font-family: 'Outfit', sans-serif; }
+        .amount { font-size: 3.5rem; font-weight: 900; color: white; font-family: 'Outfit', sans-serif; letter-spacing: -2px; }
         .period { font-size: 1rem; color: var(--text-gray); }
 
         .features { list-style: none; margin-bottom: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; flex-grow: 1; }
-        .features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #ddd; font-size: 0.95rem; }
+        .features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #ccc; font-size: 0.95rem; }
         .features li i { color: var(--primary); }
         .features li.disabled { color: #555; text-decoration: line-through; opacity: 0.6; }
+        .card-btn { width: 100%; text-align: center; margin-top: auto; }
 
-        .card-btn {
-            width: 100%;
-            text-align: center;
-            margin-top: auto; /* Empurra o botão para baixo */
-        }
+        footer { background: #020202; padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: #666; margin-top: 60px; }
 
-        /* --- Footer --- */
-        footer {
-            background: #050505;
-            padding: 50px 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-            color: #666;
-            margin-top: 60px;
-        }
-
-        /* Mobile */
+        /* --- RESPONSIVIDADE (MOBILE) --- */
         @media (max-width: 768px) {
+            .menu-icon {
+                display: block; /* Mostra o ícone no mobile */
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Começa escondido fora da tela */
+                width: 70%;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s ease;
+                border-left: 1px solid rgba(255,0,34,0.2);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+                z-index: 1001;
+                padding-bottom: 50px;
+            }
+
+            .nav-links.active {
+                right: 0; /* Desliza para dentro */
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                margin: 15px 0;
+            }
+
+            /* Ajustes Hero */
+            .hero { padding-top: 120px; }
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .price-card.featured { transform: scale(1); }
+            
+            /* Ajustes Cards */
             .pricing-grid { padding: 0 10px; }
-            .channel-logo { margin: 0 20px; font-size: 1.5rem; }
+            .price-card.featured { transform: scale(1); margin: 20px 0; }
+            
+            .channel-logo { margin: 0 15px; font-size: 1.4rem; }
         }
 
-        /* Elementos JS */
         .show-annual .monthly-price { display: none; }
         .show-annual .annual-price { display: block; }
-        .annual-price { display: none; } /* Padrão escondido */
+        .annual-price { display: none; } 
     </style>
 </head>
 <body>
@@ -360,15 +336,31 @@
     <!-- Navegação -->
     <header>
         <div class="container nav-inner">
-            <div class="logo">ONN <span>STORE</span></div>
-            <div class="nav-links">
-                <a href="#inicio">Início</a>
-                <a href="#planos">Planos</a>
-                <a href="#teste">Teste Grátis</a>
+            <!-- LOGO -->
+            <div class="logo">nexus</div>
+
+            <!-- Ícone Mobile (Hamburguer) -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </div>
-            <a href="https://wa.me/5551980323797?text=Ola%20ONN%20STORE,%20quero%20um%20teste" class="btn btn-secondary" style="padding: 8px 20px; font-size:0.8rem;">
-                <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Teste Rápido
-            </a>
+            
+            <!-- Menu de Links -->
+            <div class="nav-links" id="navLinks">
+                <a href="#inicio" onclick="toggleMenu()">Início</a>
+                <a href="#planos" onclick="toggleMenu()">Planos</a>
+                <a href="#teste" onclick="toggleMenu()">Teste Grátis</a>
+                
+                <!-- LINK NOVA ABA APK -->
+                <!-- Substitua 'seu-site-apk.com' pelo link real -->
+                <a href="https://seu-site-apk.com" target="_blank" style="color: var(--primary); font-weight: 700;">
+                    <i class="fas fa-download"></i> Baixar APK
+                </a>
+
+                <!-- Botão Teste Rápido (Dentro do menu agora para funcionar no mobile) -->
+                <a href="https://wa.me/5551980323797?text=Ola%20NEXUS,%20quero%20um%20teste" class="btn btn-secondary" style="padding: 8px 20px; font-size:0.8rem; margin-top: 10px;">
+                    <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Teste Rápido
+                </a>
+            </div>
         </div>
     </header>
 
@@ -376,19 +368,18 @@
     <section class="hero" id="inicio">
         <div class="container">
             <div data-aos="fade-up">
-                <h1>Entretenimento Sem Limites <br> <span class="text-gradient">Qualidade 4K</span></h1>
-                <p>Assista seus canais favoritos, filmes e séries sem travamentos. A melhor lista IPTV do mercado com suporte dedicado.</p>
+                <h1>Entretenimento <span style="color:var(--primary)">Sem Limites</span> <br> Qualidade 4K</h1>
+                <p>Assista seus canais favoritos, filmes e séries sem travamentos. A nova era do streaming chegou.</p>
                 <div style="display:flex; justify-content:center; gap:15px;">
-                    <a href="#planos" class="btn btn-primary">Ver Preços</a>
+                    <a href="#planos" class="btn btn-primary">Ver Planos</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- !!! AQUI ESTÁ O CARROSSEL (MARQUEE) ADICIONADO !!! -->
+    <!-- CARROSSEL -->
     <div class="logo-marquee">
         <div class="marquee-content">
-            <!-- Conteúdo repetido para criar o loop infinito -->
             <span class="channel-logo">NETFLIX</span>
             <span class="channel-logo">PRIME VIDEO</span>
             <span class="channel-logo">HBO MAX</span>
@@ -411,14 +402,13 @@
         </div>
     </div>
 
-    <!-- Preços (Inteligente) -->
+    <!-- Preços -->
     <section class="pricing-section" id="planos">
         <div class="container">
             <div class="section-header">
-                <h2>Nossos <span class="text-gradient">Planos</span></h2>
-                <p style="color:var(--text-gray);">Escolha a modalidade que melhor te atende.</p>
+                <h2>Planos <span class="text-gradient">Premium</span></h2>
+                <p style="color:var(--text-gray);">Escolha a potência ideal para você.</p>
                 
-                <!-- Botão de Troca (Toggle) -->
                 <div class="toggle-container">
                     <span id="txt-monthly" style="color:white; font-weight:700;">Mensal</span>
                     <label class="switch">
@@ -431,11 +421,9 @@
 
             <div class="pricing-grid" id="pricing-wrapper">
                 
-                <!-- Plano Básico -->
+                <!-- Básico -->
                 <div class="price-card">
                     <h3 class="plan-name">Básico</h3>
-                    
-                    <!-- Preço muda via CSS/JS -->
                     <div class="price-display">
                         <div class="monthly-price">
                             <span class="currency">R$</span><span class="amount">15</span><span class="period">/mês</span>
@@ -445,7 +433,6 @@
                             <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
                         </div>
                     </div>
-
                     <ul class="features">
                         <li><i class="fas fa-check"></i> 1 Conexão Simultânea</li>
                         <li><i class="fas fa-check"></i> Qualidade HD/SD</li>
@@ -453,18 +440,13 @@
                         <li><i class="fas fa-check"></i> Canais Ao Vivo</li>
                         <li class="disabled"><i class="fas fa-times"></i> Canais Adultos</li>
                     </ul>
-                    
-                    <!-- Botão com ID para o JS manipular -->
-                    <a href="#" id="btn-basico" class="btn btn-secondary card-btn" target="_blank">
-                        Assinar Básico
-                    </a>
+                    <a href="#" id="btn-basico" class="btn btn-secondary card-btn" target="_blank">Assinar Básico</a>
                 </div>
 
-                <!-- Plano Intermediário (Destaque) -->
+                <!-- Intermediário -->
                 <div class="price-card featured">
                     <div class="popular-tag">Mais Vendido</div>
                     <h3 class="plan-name" style="color:var(--primary);">Intermediário</h3>
-                    
                     <div class="price-display">
                         <div class="monthly-price">
                             <span class="currency">R$</span><span class="amount">25</span><span class="period">/mês</span>
@@ -474,7 +456,6 @@
                             <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
                         </div>
                     </div>
-
                     <ul class="features">
                         <li><i class="fas fa-check"></i> <strong>2 Conexões Simultâneas</strong></li>
                         <li><i class="fas fa-check"></i> Qualidade <strong>FHD</strong>/HD</li>
@@ -482,16 +463,12 @@
                         <li><i class="fas fa-check"></i> Canais Ao Vivo</li>
                         <li><i class="fas fa-check"></i> Servidor Premium</li>
                     </ul>
-
-                    <a href="#" id="btn-inter" class="btn btn-primary card-btn" target="_blank">
-                        Assinar Intermediário
-                    </a>
+                    <a href="#" id="btn-inter" class="btn btn-primary card-btn" target="_blank">Assinar Intermediário</a>
                 </div>
 
-                <!-- Plano Avançado -->
+                <!-- Avançado -->
                 <div class="price-card">
                     <h3 class="plan-name">Avançado</h3>
-                    
                     <div class="price-display">
                         <div class="monthly-price">
                             <span class="currency">R$</span><span class="amount">30</span><span class="period">/mês</span>
@@ -501,18 +478,14 @@
                             <div style="color:var(--success); font-size:0.9rem; font-weight:bold; margin-top:5px;">Economia de R$48,00</div>
                         </div>
                     </div>
-
                     <ul class="features">
                         <li><i class="fas fa-check"></i> <strong>2 Conexões Simultâneas</strong></li>
                         <li><i class="fas fa-check"></i> Qualidade <strong>4K Ultra</strong></li>
                         <li><i class="fas fa-check"></i> Filmes e Séries (Lançamentos)</li>
-                        <li><i class="fas fa-lock"></i> <strong>Canais Adultos (+18)</strong></li>
+                        <li><i class="fas fa-lock" style="color:var(--primary)"></i> <strong>Canais Adultos (+18)</strong></li>
                         <li><i class="fas fa-star"></i> Prioridade no Suporte</li>
                     </ul>
-
-                    <a href="#" id="btn-avancado" class="btn btn-secondary card-btn" target="_blank">
-                        Assinar Avançado
-                    </a>
+                    <a href="#" id="btn-avancado" class="btn btn-secondary card-btn" target="_blank">Assinar Avançado</a>
                 </div>
 
             </div>
@@ -520,11 +493,11 @@
     </section>
 
     <!-- Banner Teste Grátis -->
-    <section id="teste" style="background: var(--bg-card); padding: 60px 0; margin-top:40px;">
+    <section id="teste" style="background: var(--bg-card); padding: 80px 0; margin-top:40px; border-top: 1px solid rgba(255, 0, 34, 0.1);">
         <div class="container" style="text-align: center;">
-            <h2 style="margin-bottom: 20px;">Não tem certeza?</h2>
-            <p style="margin-bottom: 30px; color:var(--text-gray);">Teste nosso serviço gratuitamente antes de contratar.</p>
-            <a href="https://wa.me/5551980323797?text=Ola,%20gostaria%20de%20solicitar%20meu%20TESTE%20GRATIS" class="btn btn-primary" style="background: #25D366; color:white;">
+            <h2 style="margin-bottom: 20px;">Teste antes de pagar</h2>
+            <p style="margin-bottom: 30px; color:var(--text-gray);">Liberamos seu acesso agora mesmo. Sem compromisso.</p>
+            <a href="https://wa.me/5551980323797?text=Ola%20NEXUS,%20gostaria%20de%20solicitar%20meu%20TESTE%20GRATIS" class="btn btn-primary" style="background: #25D366; color:white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
                 <i class="fab fa-whatsapp" style="margin-right:10px;"></i> Solicitar Teste Grátis
             </a>
         </div>
@@ -532,86 +505,90 @@
 
     <footer>
         <div class="container">
-            <p class="logo" style="font-size:1.5rem; margin-bottom:15px;">ONN <span>STORE</span></p>
-            <p>Mais informações: (51) 98032-3797</p>
-            <p style="font-size:0.8rem; margin-top:20px;">&copy; 2024 Todos os direitos reservados.</p>
+            <div class="logo" style="justify-content:center; font-size:1.5rem; margin-bottom:15px;">nexus</div>
+            <p>Suporte 24h: (51) 98032-3797</p>
+            <p style="font-size:0.8rem; margin-top:20px; color: #444;">&copy; 2026 NEXUS IPTV. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <!-- Botão Flutuante -->
-    <a href="https://wa.me/5551980323797?text=Preciso%20de%20ajuda" 
-       style="position:fixed; bottom:30px; right:30px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; color:white; box-shadow:0 5px 15px rgba(0,0,0,0.3); z-index:999; text-decoration:none;">
+    <a href="https://wa.me/5551980323797?text=Preciso%20de%20ajuda%20no%20NEXUS" 
+       style="position:fixed; bottom:30px; right:30px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; color:white; box-shadow:0 5px 15px rgba(0,0,0,0.5); z-index:999; text-decoration:none;">
         <i class="fab fa-whatsapp"></i>
     </a>
-
     
-    <!-- Scripts de Funcionalidade -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
 
-        // ELEMENTOS DO DOM
+        /* --- SCRIPT DO MENU MOBILE --- */
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const icon = document.querySelector('.menu-icon i');
+            
+            nav.classList.toggle('active');
+            
+            // Troca o ícone de Barras para X
+            if(nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        /* --- SCRIPT DOS PREÇOS --- */
         const toggleSwitch = document.getElementById('plan-toggle');
         const pricingWrapper = document.getElementById('pricing-wrapper');
         const txtMonthly = document.getElementById('txt-monthly');
         const txtAnnual = document.getElementById('txt-annual');
 
-        // BOTÕES
         const btnBasico = document.getElementById('btn-basico');
         const btnInter = document.getElementById('btn-inter');
         const btnAvancado = document.getElementById('btn-avancado');
 
-        // NÚMERO DO WHATSAPP (Apenas números)
         const phone = "5551980323797";
 
-        // FUNÇÃO PARA ATUALIZAR OS LINKS DOS BOTÕES
         function updateLinks(isAnnual) {
             
-            // Textos para Básico
             const msgBasico = isAnnual 
-                ? "Olá! Gostaria de assinar o plano *BÁSICO ANUAL* por R$ 132,00."
-                : "Olá! Gostaria de assinar o plano *BÁSICO MENSAL* por R$ 15,00.";
+                ? "Olá NEXUS! Gostaria de assinar o plano *BÁSICO ANUAL* por R$ 132,00."
+                : "Olá NEXUS! Gostaria de assinar o plano *BÁSICO MENSAL* por R$ 15,00.";
             
-            // Textos para Intermediário
             const msgInter = isAnnual 
-                ? "Olá! Gostaria de assinar o plano *INTERMEDIÁRIO ANUAL* por R$ 252,00 (O mais vendido!)."
-                : "Olá! Gostaria de assinar o plano *INTERMEDIÁRIO MENSAL* por R$ 25,00.";
+                ? "Olá NEXUS! Gostaria de assinar o plano *INTERMEDIÁRIO ANUAL* por R$ 252,00."
+                : "Olá NEXUS! Gostaria de assinar o plano *INTERMEDIÁRIO MENSAL* por R$ 25,00.";
 
-            // Textos para Avançado
             const msgAvancado = isAnnual 
-                ? "Olá! Gostaria de assinar o plano *AVANÇADO ANUAL* por R$ 312,00 (Completo com Adultos)."
-                : "Olá! Gostaria de assinar o plano *AVANÇADO MENSAL* por R$ 30,00 (Completo com Adultos).";
+                ? "Olá NEXUS! Gostaria de assinar o plano *AVANÇADO ANUAL* por R$ 312,00."
+                : "Olá NEXUS! Gostaria de assinar o plano *AVANÇADO MENSAL* por R$ 30,00.";
 
-            // Atualiza os Hrefs
             btnBasico.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgBasico)}`;
             btnInter.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgInter)}`;
             btnAvancado.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgAvancado)}`;
         }
 
-        // EVENT LISTENER DA TROCA DE PREÇO
         toggleSwitch.addEventListener('change', () => {
             if(toggleSwitch.checked) {
-                // Modo Anual Ativado
                 pricingWrapper.classList.add('show-annual');
                 txtAnnual.style.color = "white";
-                txtMonthly.style.color = "#b0b0b0";
+                txtMonthly.style.color = "#555";
                 txtAnnual.style.fontWeight = "700";
                 txtMonthly.style.fontWeight = "400";
-                updateLinks(true); // Atualiza botões para Anual
+                updateLinks(true);
             } else {
-                // Modo Mensal Ativado
                 pricingWrapper.classList.remove('show-annual');
                 txtMonthly.style.color = "white";
-                txtAnnual.style.color = "#b0b0b0";
+                txtAnnual.style.color = "#555";
                 txtMonthly.style.fontWeight = "700";
                 txtAnnual.style.fontWeight = "400";
-                updateLinks(false); // Atualiza botões para Mensal
+                updateLinks(false);
             }
         });
 
-        // INICIALIZAÇÃO (Garante que comece no mensal correto)
         updateLinks(false);
-
     </script>
 </body>
 </html>
